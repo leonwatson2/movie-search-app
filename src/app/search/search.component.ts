@@ -29,7 +29,12 @@ export class SearchComponent implements OnInit {
   }
 
   searchQuery(query:string){
-    console.log(query)
+    if(query.length > 0)
+    this.movieService.searchMovie(query)
+                      .subscribe(results=>{
+                        this.fetching = false
+                        this.searchResults = results
+                      })
   }
 
   setCurrentMovie(movie:Movie){
